@@ -1,7 +1,6 @@
 import { Row, Col, Typography } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import style from './expand.module.css'
 import 'antd/lib/row/style'
 
 const { Link } = Typography
@@ -61,8 +60,8 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
           </div>
         </Col>
         <Col flex={`${suffixWidth}px`}>
-          <div className={style.endArea}>
-            <div>
+          <Row align={'middle'} justify={'end'}>
+            <Col>
               {canExpand && (
                 <Link onClick={() => setExpanded(!expanded)}>
                   {text}
@@ -73,9 +72,9 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
                   )}
                 </Link>
               )}
-            </div>
-            <div>{props.suffix}</div>
-          </div>
+            </Col>
+            <Col>{props.suffix}</Col>
+          </Row>
         </Col>
       </Row>
     </>
