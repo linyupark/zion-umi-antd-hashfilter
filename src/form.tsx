@@ -109,9 +109,9 @@ const HashFilterForm = (props: HashFilterFormProps) => {
   }
 
   const onSubmit = async () => {
-    Emitter.emit('onSubmit', true)
+    Emitter.emit('beforeSubmit', initialValues)
     await onFinish(hashObjectStringify(initialValues))
-    Emitter.emit('onSubmit', false)
+    Emitter.emit('afterSubmit')
     return true
   }
 
@@ -160,16 +160,13 @@ const HashFilterForm = (props: HashFilterFormProps) => {
     }
   }, [hash])
 
-  return {
-    Form: (
-      <Form
-        {...Util.objectFilter(props, (_, k) => !~[excludeProps].indexOf(k))}
-        initialValues={initialValues}
-        onFinish={onFinishPreHandler}
-      />
-    ),
-    Emitter,
-  }
+  return (
+    <Form
+      {...Util.objectFilter(props, (_, k) => !~[excludeProps].indexOf(k))}
+      initialValues={initialValues}
+      onFinish={onFinishPreHandler}
+    />
+  )
 }
 
 export default HashFilterForm
