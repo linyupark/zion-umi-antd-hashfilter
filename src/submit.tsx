@@ -14,20 +14,31 @@ const AntFormFiltersSubmit: React.FC<AntFormFilterSubmitProps> = props => {
   const { item, btn } = props
   const [loading, setLoading] = useState(false)
 
+  const toggle = v => setLoading(!!v)
+
   useEffect(() => {
-    Emitter.on('beforeSubmit', () => setLoading(true))
+    Emitter.on('beforeSubmit', toggle)
+    Emitter.on('afterSubmit', toggle)
     return () => {
-      Emitter.off('afterSubmit', () => setLoading(false))
+      Emitter.off('beforeSubmit', toggle)
+      Emitter.off('afterSubmit', toggle)
     }
   }, [])
 
   return (
-    <Form.Item colon={false} {...item}>
+    <Form.Item
+      colon={false}
+      style={{
+        margin: '0 0 0 10px',
+      }}
+      {...item}
+    >
       <Button
         type="primary"
         icon={<SearchOutlined />}
         htmlType="submit"
         loading={loading}
+        size="large"
         {...btn}
       >
         {props.children}

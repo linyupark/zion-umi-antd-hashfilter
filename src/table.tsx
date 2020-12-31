@@ -6,7 +6,7 @@ import Emitter from './emitter'
 import Util from './util'
 
 interface HashFilterTableProps extends TableProps<any> {
-  columns: any[]
+  columns: any
   data: any
   columnsMap?: any // columns 内容修正
   itemsKey?: string
@@ -30,8 +30,8 @@ const HashFilterTable = (props: HashFilterTableProps) => {
   const currentPageKey = props.currentPageKey ?? 'current'
   const pageSizeKey = props.pageSizeKey ?? 'pageSize'
   const totalItemsKey = props.totalItemsKey ?? 'totalItems'
-  const pageSelector = props.pageSelector ?? '.site-layout-background'
-  const formSelector = props.formSelector ?? '.form'
+  const pageSelector = props.pageSelector ?? '.ant-layout-content'
+  const formSelector = props.formSelector ?? '.ant-form'
 
   // props 过滤器
   const excludeProps = [
@@ -108,9 +108,13 @@ const HashFilterTable = (props: HashFilterTableProps) => {
     return () => window.removeEventListener('resize', onWindowResize, false)
   }, [])
 
+  const formProps = Util.objectFilter(props, (_, k) => {
+    return excludeProps.indexOf(k) === -1
+  })
+
   return (
     <Table
-      {...Util.objectFilter(props, (_, k) => !~[excludeProps].indexOf(k))}
+      {...formProps}
       scroll={scroll}
       columns={columns}
       dataSource={dataSource}

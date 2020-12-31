@@ -41,7 +41,12 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
 
   return (
     <>
-      <Row wrap={false} align="top" justify="space-between">
+      <Row
+        style={{ width: '100%' }}
+        wrap={false}
+        align="top"
+        justify="space-between"
+      >
         <Col flex="auto">
           <div className={`expand${expanded || !canExpand ? ' on' : ''}`}>
             {props.children}
@@ -49,8 +54,8 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
           </div>
         </Col>
         <Col flex={`${suffixWidth}px`}>
-          <Row gutter={10} justify="end" align="middle" wrap={false}>
-            <Col>
+          <div className="expandArea">
+            <div>
               {canExpand && (
                 <Link onClick={() => setExpanded(!expanded)}>
                   {text}
@@ -61,9 +66,9 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
                   )}
                 </Link>
               )}
-            </Col>
-            <Col>{props.suffix}</Col>
-          </Row>
+            </div>
+            <div>{props.suffix}</div>
+          </div>
         </Col>
       </Row>
       <style jsx>{`
@@ -73,6 +78,11 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
         }
         .expand.on {
           height: auto;
+        }
+        .expandArea {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
         }
       `}</style>
     </>
