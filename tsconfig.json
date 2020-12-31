@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true,
-    "importHelpers": true
-  }
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["typings.d.ts"]
 }
