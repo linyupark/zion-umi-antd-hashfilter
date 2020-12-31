@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Table } from 'antd'
 import { TablePaginationConfig, TableProps } from 'antd/lib/table'
 import Emitter from './emitter'

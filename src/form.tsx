@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Form } from 'antd'
 import qs from 'qs'
 import { useLocation } from 'umi'
@@ -110,7 +110,7 @@ const HashFilterForm = (props: HashFilterFormProps) => {
 
   const onSubmit = async () => {
     Emitter.emit('onSubmit', true)
-    await onFinish!(hashObjectStringify(initialValues))
+    await onFinish(hashObjectStringify(initialValues))
     Emitter.emit('onSubmit', false)
     return true
   }

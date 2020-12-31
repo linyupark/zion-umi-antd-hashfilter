@@ -40,40 +40,42 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
   }, [expanded])
 
   return (
-    <Row wrap={false} align="top" justify="space-between">
-      <Col flex="auto">
-        <div className={`expand${expanded || !canExpand ? ' on' : ''}`}>
-          {props.children}
-          <span ref={posRef}></span>
-        </div>
-      </Col>
-      <Col flex={`${suffixWidth}px`}>
-        <Row gutter={10} justify="end" align="middle" wrap={false}>
-          <Col>
-            {canExpand && (
-              <Link onClick={() => setExpanded(!expanded)}>
-                {text}
-                {expanded ? (
-                  <UpOutlined style={iconStyles} />
-                ) : (
-                  <DownOutlined style={iconStyles} />
-                )}
-              </Link>
-            )}
-          </Col>
-          <Col>{props.suffix}</Col>
-        </Row>
-      </Col>
+    <>
+      <Row wrap={false} align="top" justify="space-between">
+        <Col flex="auto">
+          <div className={`expand${expanded || !canExpand ? ' on' : ''}`}>
+            {props.children}
+            <span ref={posRef}></span>
+          </div>
+        </Col>
+        <Col flex={`${suffixWidth}px`}>
+          <Row gutter={10} justify="end" align="middle" wrap={false}>
+            <Col>
+              {canExpand && (
+                <Link onClick={() => setExpanded(!expanded)}>
+                  {text}
+                  {expanded ? (
+                    <UpOutlined style={iconStyles} />
+                  ) : (
+                    <DownOutlined style={iconStyles} />
+                  )}
+                </Link>
+              )}
+            </Col>
+            <Col>{props.suffix}</Col>
+          </Row>
+        </Col>
+      </Row>
       <style jsx>{`
         .expand {
-          height: 48px;
+          height: ${expandHeight - 2}px;
           overflow: hidden;
         }
         .expand.on {
           height: auto;
         }
       `}</style>
-    </Row>
+    </>
   )
 }
 

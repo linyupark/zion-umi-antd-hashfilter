@@ -47,7 +47,8 @@
     "umi": "^3.x",
     "moment": "^2.x",
     "styled-jsx": "^3.x",
-    "qs": "^6.x"
+    "qs": "^6.x",
+    "@ant-design/icons": "^4.x"
   },
   "devDependencies": {
     "@types/styled-jsx": "^2.2.8",
