@@ -6,6 +6,7 @@ import moment from 'moment'
 import Emitter from './emitter'
 import Util from './util'
 import { FormProps } from 'antd/lib/form/Form'
+import 'antd/lib/form/style/css'
 
 interface HashFilterFormProps extends FormProps {
   initData?: any

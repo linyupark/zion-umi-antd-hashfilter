@@ -20,7 +20,7 @@
     }
   },
   "scripts": {
-    "build": "microbundle --jsx React.createElement -f cjs,es,modern --compress",
+    "build-macos": "rm -rf ./dist && microbundle --jsx React.createElement -f cjs,es,modern --compress",
     "prettier": "prettier --parser=typescript --write ./src/**/*.{ts,tsx}"
   },
   "husky": {

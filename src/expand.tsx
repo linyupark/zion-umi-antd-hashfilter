@@ -2,6 +2,7 @@ import { Row, Col, Typography } from 'antd'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import style from './expand.module.css'
+import 'antd/lib/row/style/index'
 
 const { Link } = Typography
 

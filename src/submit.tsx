@@ -4,6 +4,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import { FormItemProps } from 'antd/lib/form/FormItem'
 import { ButtonProps } from 'antd/lib/button'
 import Emitter from './emitter'
+import 'antd/lib/button/style/css'
 
 interface AntFormFilterSubmitProps {
   item?: FormItemProps

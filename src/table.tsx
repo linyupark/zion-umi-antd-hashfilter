@@ -4,6 +4,7 @@ import { Table } from 'antd'
 import { TablePaginationConfig, TableProps } from 'antd/lib/table'
 import Emitter from './emitter'
 import Util from './util'
+import 'antd/lib/table/style/css'
 
 interface HashFilterTableProps extends TableProps<any> {
   columns: any
