@@ -11,3 +11,5 @@ Control the query conditions by monitoring and modifying the hash so that the co
 通过对hash的监测跟修改来控制查询条件让表格内容呈现对应内容
 
 ### changelog
+
+[0.0.9] 开放对table 分页 props 的覆盖

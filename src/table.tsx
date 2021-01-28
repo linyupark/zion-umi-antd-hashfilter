@@ -15,10 +15,10 @@ interface HashFilterTableProps extends TableProps<any> {
   currentPageKey?: string
   pageSizeKey?: string
   totalItemsKey?: string
-  showTotal?: (total: number, range: [number, number]) => React.ReactNode
   pageSelector?: string // form 所在容器选择器
   formSelector?: string // form 选择器
   scrollOffsetY?: number // Y轴滚动条修正
+  paginationProps?: TablePaginationConfig
 }
 
 const HashFilterTable = (props: HashFilterTableProps) => {
@@ -34,6 +34,7 @@ const HashFilterTable = (props: HashFilterTableProps) => {
   const totalItemsKey = props.totalItemsKey ?? 'totalItems'
   const pageSelector = props.pageSelector ?? '.ant-layout-content'
   const formSelector = props.formSelector ?? '.ant-form'
+  const paginationProps = props.paginationProps ?? {}
 
   // props 过滤器
   const excludeProps = [
@@ -45,6 +46,7 @@ const HashFilterTable = (props: HashFilterTableProps) => {
     'pageSelector',
     'formSelector',
     'scrollOffsetY',
+    'paginationProps',
   ]
 
   // 列翻译补全数据
@@ -81,7 +83,6 @@ const HashFilterTable = (props: HashFilterTableProps) => {
       current: props.data[currentPageKey],
       pageSize: props.data[pageSizeKey],
       total: props.data[totalItemsKey],
-      showTotal: props.showTotal,
       onChange: (page, pageSize) => {
         Emitter.emit('onPaginationChange', {
           current: page,
@@ -89,6 +90,7 @@ const HashFilterTable = (props: HashFilterTableProps) => {
         })
       },
       hideOnSinglePage: true,
+      ...paginationProps,
     }
   }, [props.data])
 
