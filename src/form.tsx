@@ -100,13 +100,15 @@ const HashFilterForm = (props: HashFilterFormProps) => {
   const valuesToHash = values => {
     const newHashStr = qs.stringify(values, { skipNulls: true })
 
-    return (hash === '' ? '?' : hash + '&?')
+    const r = (hash || '?')
       .split('?')
       .map((s, i) => {
         if (i === 0) return s
         return newHashStr
       })
       .join('?')
+
+    return r === '#?' ? '' : r
   }
 
   const onSubmit = async () => {
