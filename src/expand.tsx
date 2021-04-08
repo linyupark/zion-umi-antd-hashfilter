@@ -13,18 +13,22 @@ const iconStyles = {
 interface HashFilterExpandProps {
   children: React.ReactNode
   suffix: JSX.Element
+  name: string // 展开名用于session保存状态
   height?: number // 折叠高度
   text?: string // 折叠文案
   suffixWidth?: number
 }
 
 const HashFilterExpand = function (props: HashFilterExpandProps) {
+  const sess = `expanded_${props.name}`
   const text = props.text ?? 'Expand'
   const suffixWidth = props.suffixWidth ?? 250
   const expandHeight = props.height ?? 50
 
   const [canExpand, setCanExpand] = useState(false)
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(
+    sessionStorage.getItem(sess) === 'true',
+  )
   const posRef: any = useRef(null)
 
   const expandStatus = () =>
@@ -63,7 +67,12 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
           <Row align={'middle'} justify={'end'}>
             <Col>
               {canExpand && (
-                <Link onClick={() => setExpanded(!expanded)}>
+                <Link
+                  onClick={() => {
+                    sessionStorage.setItem(sess, String(!expanded))
+                    setExpanded(!expanded)
+                  }}
+                >
                   {text}
                   {expanded ? (
                     <UpOutlined style={iconStyles} />
