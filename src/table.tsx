@@ -94,22 +94,26 @@ const HashFilterTable = (props: HashFilterTableProps) => {
     }
   }, [props.data])
 
-  // 窗口变动自动调整table scroll y来确保头部固定
-  const onWindowResize = () => {
-    const $page = document.querySelector(pageSelector)
-    const $form = $page?.querySelector(formSelector)
-    const tableHeight = $page!.clientHeight - $form!.clientHeight
+  // // 窗口变动自动调整table scroll y来确保头部固定
+  // const onWindowResize = () => {
+  //   const $page = document.querySelector(pageSelector)
+  //   const $form = $page?.querySelector(formSelector)
+  //   const tableHeight = $page!.clientHeight - $form!.clientHeight
 
-    setScroll({
-      ...scroll,
-      y: tableHeight - 160 + (props.scrollOffsetY || 0),
-    })
-  }
+  //   setScroll({
+  //     ...scroll,
+  //     y: tableHeight - 160 + (props.scrollOffsetY || 0),
+  //   })
+  // }
 
   useEffect(() => {
-    onWindowResize()
-    window.addEventListener('resize', onWindowResize, false)
-    return () => window.removeEventListener('resize', onWindowResize, false)
+    setScroll({
+      ...scroll,
+      y: `calc(100vh - ${props.scrollOffsetY || 0}px)`,
+    })
+    // onWindowResize()
+    // window.addEventListener('resize', onWindowResize, false)
+    // return () => window.removeEventListener('resize', onWindowResize, false)
   }, [])
 
   const formProps = Util.objectFilter(props, (_, k) => {

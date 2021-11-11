@@ -67,22 +67,22 @@ const HashFilterExpand = function (props: HashFilterExpandProps) {
           <Row align={'middle'} justify={'end'}>
             <Col>
               {canExpand && (
-                <Link
-                  onClick={() => {
-                    sessionStorage.setItem(sess, String(!expanded))
-                    setExpanded(!expanded)
-                  }}
-                >
-                  {text}
-                  {expanded ? (
-                    <UpOutlined style={iconStyles} />
-                  ) : (
-                    <DownOutlined style={iconStyles} />
-                  )}
-                </Link>
-              )}
+                  <Link
+                    onClick={() => {
+                      sessionStorage.setItem(sess, String(!expanded))
+                      setExpanded(!expanded)
+                    }}
+                  >
+                    {text}
+                    {expanded ? (
+                      <UpOutlined style={iconStyles} />
+                    ) : (
+                      <DownOutlined style={iconStyles} />
+                    )}
+                  </Link>
+                )}
+              {props.suffix}
             </Col>
-            <Col>{props.suffix}</Col>
           </Row>
         </Col>
       </Row>
